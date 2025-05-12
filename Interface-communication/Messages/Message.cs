@@ -1,37 +1,39 @@
 using Interface_communication.Utils;
 
-namespace Interface_communication;
+namespace Interface_communication.Messages;
 
 /// <summary>
 /// Représente un ordre donné par l'IA
 /// </summary>
 public class Message
 {
-    private readonly string messageServeur;
     private readonly List<string> arguments;
+    private readonly MessageGenerique messageGenerique;
 
-    public Message(string messageServeur)
+    /// <summary>
+    /// Instancie un message
+    /// </summary>
+    /// <param name="messageGenerique">Message générique sur lequel prendre modèle</param>
+    public Message(MessageGenerique messageGenerique)
     {
-        this.messageServeur = messageServeur;
+        this.messageGenerique = messageGenerique;
         arguments = [];
     }
 
     private string PrintableArguments => string.Join(Config.ArgumentsDelimiter, arguments);
+    private string VerbeMessage => messageGenerique.VerbeMessage;
     
-    /// <summary>
-    /// Message formaté et prêt à être envoyé au serveur
-    /// </summary>
-    public string MessageServeur => arguments.Count > 0 ? $"{messageServeur}{Config.ArgumentsDelimiter}{PrintableArguments}" : messageServeur;
+    public string MessageServeur => arguments.Count > 0 ? $"{VerbeMessage}{Config.ArgumentsDelimiter}{PrintableArguments}" : VerbeMessage;
 
     /// <summary>
     /// Ajoute un nouvel argument au message
     /// </summary>
-    /// <param name="argument">L'argument à ajouter à la liste</param>
+    /// <param name="argument">The argument to be added to the list.</param>
     public void AddArgument(string argument)
     {
         arguments.Add(argument);
     }
-
+    
     /// <summary>
     /// Ajoute une liste d'arguments au message
     /// </summary>

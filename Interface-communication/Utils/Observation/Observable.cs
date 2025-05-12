@@ -1,3 +1,5 @@
+using Interface_communication.Messages;
+
 namespace Interface_communication.Utils.Observation;
 
 /// <summary>
