@@ -34,7 +34,7 @@ public abstract class IntelligenceArtificielle
     /// <returns>Liste des instructions à envoyer au serveur lors du démarrage de la partie</returns>
     public List<Message> GetProtocoleDemarragePartie()
     {
-        return [new Message("INSCRIRE")];
+        return [MessageFactory.CreateMessage("INSCRIRE")];
     }
 
     /// <summary>
