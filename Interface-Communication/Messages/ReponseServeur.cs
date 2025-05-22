@@ -3,7 +3,7 @@ using Interface_communication;
 namespace Interface_Communication.Messages;
 
 /// <summary>
-/// Réponse à un message envoyé par un serveur
+/// Réponse à un message envoyé par le serveur
 /// </summary>
 public class ReponseServeur
 {
@@ -23,6 +23,8 @@ public class ReponseServeur
             .Select(arg => arg.Split(ConfigCommunication.DelimiteurSousArguments))
             .ToArray();
 
+    public bool EstErreur => reponseServeur.StartsWith(ConfigCommunication.MessageErreurServeur);
+    
     /// <summary>
     /// Instancie une réponse serveur à un message du joueur
     /// </summary>

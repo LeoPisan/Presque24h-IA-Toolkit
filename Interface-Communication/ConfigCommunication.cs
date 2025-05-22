@@ -54,4 +54,9 @@ public static class ConfigCommunication
         get => delimiteurSousArguments;
         set => delimiteurSousArguments = value;
     }
+    
+    /// <summary>
+    /// Début du message envoyé par le serveur s'il est en erreur
+    /// </summary>
+    public static string MessageErreurServeur => "ERREUR";
 }
