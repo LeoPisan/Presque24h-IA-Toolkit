@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interface-communication", "Interface-communication\Interface-communication.csproj", "{517C1FB7-2969-4F11-989B-3C942C49BE0F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interface-communication-legacy", "Interface-communication-legacy\Interface-communication-legacy.csproj", "{517C1FB7-2969-4F11-989B-3C942C49BE0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
