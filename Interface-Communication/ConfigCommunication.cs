@@ -7,7 +7,8 @@ public static class ConfigCommunication
 {
     #region Attributs
 
-    private static string argumentDelimiter = "|";
+    private static string delimiteurArgument = "|";
+    private static string delimiteurSousArguments = ";";
     private static string hostnameServeur = "127.0.0.1";
     private static int portServeur = 1234;
     
@@ -37,12 +38,20 @@ public static class ConfigCommunication
     #endregion
     
     /// <summary>
-    /// Caractère ou chaîne de caractère séparant les arguments dans les messages envoyés au serveur, par défaut il s'agit d'un espace
+    /// Caractère ou chaîne de caractères séparant les arguments dans les messages envoyés au serveur, par défaut il s'agit d'un pipe (|)
     /// </summary>
-    public static string ArgumentsDelimiter
+    public static string DelimiteurArguments
     {
-        get => argumentDelimiter;
-        set => argumentDelimiter = value;
+        get => delimiteurArgument;
+        set => delimiteurArgument = value;
     }
 
+    /// <summary>
+    /// Caractère ou chaîne de caractères séparant les sous-arguments dans les messages envoyés au serveur, par défaut il s'agit d'un semicolon (;)
+    /// </summary>
+    public static string DelimiteurSousArguments
+    {
+        get => delimiteurSousArguments;
+        set => delimiteurSousArguments = value;
+    }
 }
