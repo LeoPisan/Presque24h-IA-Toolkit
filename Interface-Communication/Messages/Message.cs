@@ -16,7 +16,6 @@ public class Message
     /// </summary>
     /// <param name="commande">Ordre principal à envoyer au serveur (usage de constantes recommandé)</param>
     /// <param name="arguments">Arguments du message, optionnels</param>
-    /// <param name="reponseContientVerbe">Indique si la réponse attendue (s'il y en a une) doit contenir un verbe ou non, vrai par défaut</param>
     public Message(string commande = "", string[]? arguments = null)
     {
         this.commande = commande;
