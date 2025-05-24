@@ -1,45 +1,38 @@
-using Interface_communication.Utils;
 
-namespace Interface_communication;
+using Interface_communication;
+
+namespace Interface_Communication.Messages;
 
 /// <summary>
 /// Représente un ordre donné par l'IA
 /// </summary>
 public class Message
 {
-    private readonly string verbeMessage;
+    private readonly string commande;
     private readonly List<string> arguments;
-    private bool reponseContientVerbe;
 
     /// <summary>
     /// Instancie un message pouvant être envoyé au serveur
     /// </summary>
-    /// <param name="verbeMessage">Ordre principal à envoyer au serveur (usage de constantes recommandé)</param>
+    /// <param name="commande">Ordre principal à envoyer au serveur (usage de constantes recommandé)</param>
     /// <param name="arguments">Arguments du message, optionnels</param>
-    /// <param name="reponseContientVerbe">Indique si la réponse attendue (s'il y en a une) doit contenir un verbe ou non, vrai par défaut</param>
-    public Message(string verbeMessage, string[]? arguments = null, bool reponseContientVerbe = true)
+    public Message(string commande = "", string[]? arguments = null)
     {
-        this.reponseContientVerbe = reponseContientVerbe;
-        this.verbeMessage = verbeMessage;
+        this.commande = commande;
         if (arguments != null)
             this.arguments = [..arguments]; // On initialise l'attribut à partir des éléments du tableau fournit 
         else this.arguments = [];
     }
 
-    private string PrintableArguments => string.Join(Config.ArgumentsDelimiter, arguments);
+    private string PrintableArguments => string.Join(ConfigCommunication.DelimiteurArguments, arguments);
 
-    public string VerbeMessage => verbeMessage;
-    protected List<string> Arguments => arguments;
+    public string Commande => commande;
+    public List<string> Arguments => arguments;
     
     /// <summary>
     /// Message formaté et prêt à être envoyé au serveur
     /// </summary>
-    internal string MessageServeur => arguments.Count > 0 ? $"{verbeMessage}{Config.ArgumentsDelimiter}{PrintableArguments}" : verbeMessage;
-
-    /// <summary>
-    /// Indique si la réponse (si on en attends une) doit contenir un verbe
-    /// </summary>
-    public bool ReponseContientVerbe => reponseContientVerbe;
+    public string MessageServeur => arguments.Count > 0 ? $"{commande}{ConfigCommunication.DelimiteurArguments}{PrintableArguments}" : commande;
 
     /// <summary>
     /// Ajoute un nouvel argument au message

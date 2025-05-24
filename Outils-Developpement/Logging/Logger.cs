@@ -1,6 +1,4 @@
-using System.Runtime.CompilerServices;
-
-namespace Interface_communication.Utils.Logging;
+namespace Outils_Developpement.Logging;
 
 /// <summary>
 /// Un logger simple pour les besoins de l'application

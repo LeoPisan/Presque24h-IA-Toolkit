@@ -1,8 +1,8 @@
 using System.Net.Sockets;
-using Interface_communication.Utils;
-using Interface_communication.Utils.Logging;
+using Interface_communication;
+using Outils_Developpement.Logging;
 
-namespace Interface_communication;
+namespace Interface_Communication.Connexion;
 
 /// <summary>
 /// Permet d'établir la connexion avec le serveur et d'échanger des messages avec lui 
@@ -13,33 +13,21 @@ internal class Connexion
     private TcpClient? client;
     private StreamReader fluxEntrant;
     private StreamWriter fluxSortant;
-    private static Connexion? instance;
     #endregion
-
-    /// <summary>
-    /// Obtient l'instance unique (singleton) de la classe <see cref="Connexion"/>.
-    /// Fournit un point d'entrée unique pour établir la connexion avec le serveur et
-    /// échanger des messages via les flux de communication initialisés.
-    /// </summary>
-    public static Connexion Instance
-    {
-        get
-        {
-            instance ??= new Connexion(); 
-            return instance;
-        }
-    }
 
     #region Méthodes
 
-    private Connexion()
+    /// <summary>
+    /// Instancie la connexion
+    /// </summary>
+    public Connexion()
     {
         CreationFlux();
     }
     
     private void ConnexionServeur()
     {
-        client = new TcpClient(Config.HostnameServeur, Config.PortServeur);
+        client = new TcpClient(ConfigCommunication.HostnameServeur, ConfigCommunication.PortServeur);
     }
 
     /// <summary>
