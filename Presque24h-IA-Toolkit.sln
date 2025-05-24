@@ -1,7 +1,5 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interface-communication-legacy", "Interface-communication-legacy\Interface-communication-legacy.csproj", "{517C1FB7-2969-4F11-989B-3C942C49BE0F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interface-Communication", "Interface-Communication\Interface-Communication.csproj", "{33475E35-48C5-4853-9C16-28469559F09F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Outils-Developpement", "Outils-Developpement\Outils-Developpement.csproj", "{82257456-1A7C-42AA-B4C8-DA19700DFDAD}"
@@ -12,10 +10,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{517C1FB7-2969-4F11-989B-3C942C49BE0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{517C1FB7-2969-4F11-989B-3C942C49BE0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{517C1FB7-2969-4F11-989B-3C942C49BE0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{517C1FB7-2969-4F11-989B-3C942C49BE0F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{33475E35-48C5-4853-9C16-28469559F09F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{33475E35-48C5-4853-9C16-28469559F09F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33475E35-48C5-4853-9C16-28469559F09F}.Release|Any CPU.ActiveCfg = Release|Any CPU
