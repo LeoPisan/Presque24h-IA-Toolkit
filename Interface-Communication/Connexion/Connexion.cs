@@ -36,6 +36,7 @@ public class Connexion
             host ?? ConfigCommunication.HostnameServeur,
             port ?? ConfigCommunication.PortServeur
         );
+        Logger.Log(NiveauxLog.InfoToolkit, $"Connexion effectuée en TCP à l'URI {host}:{port}");
     }
 
     /// <summary>
@@ -77,6 +78,7 @@ public class Connexion
     public void Stop()
     {
         client?.Close();
+        Logger.Log(NiveauxLog.InfoToolkit, "Connexion avec le serveur coupée");
     }
 
     #endregion
