@@ -7,7 +7,7 @@ namespace Interface_Communication.Connexion;
 /// <summary>
 /// Permet d'établir la connexion avec le serveur et d'échanger des messages avec lui 
 /// </summary>
-public class Connexion
+public class Connexion : IDisposable
 {
     #region Attributs
 
@@ -83,8 +83,33 @@ public class Connexion
 
     #endregion
 
+    /// <summary>
+    /// Releases the resources used by the Connexion class.
+    /// </summary>
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    /// <summary>
+    /// Releases the unmanaged and optionally managed resources.
+    /// </summary>
+    /// <param name="disposing">True to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+    protected virtual void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            // Dispose managed resources
+            fluxEntrant?.Dispose();
+            fluxSortant?.Dispose();
+            Stop();
+        }
+        // No unmanaged resources to release
+    }
+
     ~Connexion()
     {
-        Stop();
+        Dispose(false);
     }
 }
