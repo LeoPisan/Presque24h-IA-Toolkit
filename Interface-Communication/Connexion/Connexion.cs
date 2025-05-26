@@ -10,9 +10,11 @@ namespace Interface_Communication.Connexion;
 public class Connexion
 {
     #region Attributs
+
     private TcpClient? client;
     private StreamReader fluxEntrant;
     private StreamWriter fluxSortant;
+
     #endregion
 
     #region Méthodes
@@ -20,14 +22,20 @@ public class Connexion
     /// <summary>
     /// Instancie la connexion
     /// </summary>
-    public Connexion()
+    /// <param name="host">L'URI sur laquelle se connecter, par défaut celle indiquée pour <see cref="ConfigCommunication.HostnameServeur"/> dans la configuration</param>
+    /// <param name="port">Le port sur lequel se connecter, par défaut celui indiqué pour <see cref="ConfigCommunication.PortServeur"/> dans la configuration</param>
+    public Connexion(string? host = null, int? port = null)
     {
+        ConnexionServeur(host, port);
         CreationFlux();
     }
-    
-    private void ConnexionServeur()
+
+    private void ConnexionServeur(string? host, int? port)
     {
-        client = new TcpClient(ConfigCommunication.HostnameServeur, ConfigCommunication.PortServeur);
+        client = new TcpClient(
+            host ?? ConfigCommunication.HostnameServeur,
+            port ?? ConfigCommunication.PortServeur
+        );
     }
 
     /// <summary>
@@ -36,15 +44,13 @@ public class Connexion
     /// </summary>
     private void CreationFlux()
     {
-        if (client == null)
-            ConnexionServeur();
         fluxEntrant = new StreamReader(client.GetStream());
         fluxSortant = new StreamWriter(client.GetStream());
         fluxSortant.AutoFlush = true;
     }
 
     /// <summary>
-    /// Réceptionne le dernier message envoyé par le serveur
+    /// Réceptionne le dernier message envoyé par le serveur en encapsulant <see cref="StreamReader.ReadLine"/>
     /// </summary>
     /// <returns>Le message</returns>
     public string RecevoirMessage()
@@ -55,16 +61,28 @@ public class Connexion
         return message;
     }
 
+    /// <summary>
+    /// Envoie un message au serveur en encapsulant <see cref="StreamWriter.WriteLine(string?)"/>
+    /// </summary>
+    /// <param name="message">Chaîne de caractères à envoyer</param>
     public void EnvoyerMessage(string message)
     {
         fluxSortant.WriteLine(message);
         Logger.Log(NiveauxLog.Action, $"--> Message envoyé : {message}");
     }
 
+    /// <summary>
+    /// Coupe la connexion au serveur
+    /// </summary>
     public void Stop()
     {
         client?.Close();
     }
+
     #endregion
 
+    ~Connexion()
+    {
+        Stop();
+    }
 }
