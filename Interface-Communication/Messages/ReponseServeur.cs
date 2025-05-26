@@ -3,7 +3,7 @@ using Interface_communication;
 namespace Interface_Communication.Messages;
 
 /// <summary>
-/// Réponse à un message envoyé par le serveur
+/// Réponse à un message envoyé au serveur
 /// </summary>
 public class ReponseServeur
 {
