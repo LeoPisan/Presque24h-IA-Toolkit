@@ -1,5 +1,6 @@
 
 using Interface_communication;
+using Interface_communication.Exceptions;
 
 namespace Interface_Communication.Messages;
 
@@ -32,7 +33,21 @@ public class Message
     /// <summary>
     /// Message formaté et prêt à être envoyé au serveur
     /// </summary>
-    public string MessageServeur => arguments.Count > 0 ? $"{commande}{ConfigCommunication.DelimiteurArguments}{PrintableArguments}" : commande;
+    public string MessageServeur
+    {
+        get
+        {
+            if (arguments.Count > 0 && !string.IsNullOrWhiteSpace(commande))
+                return $"{commande}{ConfigCommunication.DelimiteurArguments}{PrintableArguments}";
+            if (!string.IsNullOrWhiteSpace(commande))
+                return commande;
+            if (arguments.Count > 0)
+                return PrintableArguments;
+            
+            // On ne peut pas générer le message car il n'y a aucun argument ni commande
+            throw new MessageVideException();
+        }
+    }
 
     /// <summary>
     /// Ajoute un nouvel argument au message
