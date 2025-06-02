@@ -16,3 +16,9 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           default_bump: 'minor'
+      - name: Create a GitHub release # Remove to only create tag
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.tag_version.outputs.new_tag }}
+          name: Release ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }}
